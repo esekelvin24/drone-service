@@ -17,12 +17,13 @@ import static javax.persistence.GenerationType.AUTO;
 public class Drone {
 
     @Id @GeneratedValue(strategy = AUTO)
+    private String id;
     private String sn;
     private String weight;
     private int battery;
 
     @ManyToMany(fetch = EAGER)
-    private Collection <Model> model = new ArrayList<>();
+    private Collection <Model> models = new ArrayList<>();
 
     @ManyToMany(fetch = EAGER)
     private Collection<State> states = new ArrayList<>();
