@@ -44,7 +44,7 @@ public class DroneServiceImpl implements DroneService {
          log.info("adding model {} to Drone Serial No {}", modelName, sn);
          Drone drone = droneRepo.findBySn(sn);
          Model model = modelRepo.findByName(modelName);
-         drone.getModels().add(model);
+         drone.setModel(model);
 
     }
 
@@ -53,13 +53,33 @@ public class DroneServiceImpl implements DroneService {
            log.info("adding state {} to Drone Serial No {}", stateName, sn);
            Drone drone = droneRepo.findBySn(sn);
            State state = stateRepo.findByname(stateName);
-           drone.getStates().add(state);
+           drone.setState(state);
     }
 
     @Override
     public Drone getDrone(String sn) {
         log.info("fetching details of drone {}", sn);
         return droneRepo.findBySn(sn);
+    }
+
+    @Override
+    public State getState(String stateName) {
+        return stateRepo.findByname(stateName);
+    }
+
+    @Override
+    public List<State> getStates() {
+        return stateRepo.findAll();
+    }
+
+    @Override
+    public Model getModel(String modelName) {
+        return modelRepo.findByName(modelName);
+    }
+
+    @Override
+    public List<Model> getModels() {
+        return modelRepo.findAll();
     }
 
     @Override

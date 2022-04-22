@@ -1,11 +1,12 @@
 package com.musalasoft.droneservice.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -14,18 +15,25 @@ import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.AUTO;
 
 @Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Drone {
 
     @Id @GeneratedValue(strategy = AUTO)
-    private String id;
+    private Long id;
     private String sn;
-    private String weight;
+    private int weight;
     private int battery;
 
-    @ManyToMany(fetch = EAGER)
-    private Collection <Model> models = new ArrayList<>();
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "state_id", referencedColumnName = "id")
+    private State state;
 
-    @ManyToMany(fetch = EAGER)
-    private Collection<State> states = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "model_id", referencedColumnName = "id")
+    Model model;
+
 
 }

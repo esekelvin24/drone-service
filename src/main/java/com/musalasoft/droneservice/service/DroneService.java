@@ -16,4 +16,10 @@ public interface DroneService {
 
     Drone getDrone(String sn); //get a single drone with a drone serial number
     List<Drone> getDrones(); //get all drones in a list
+
+    State getState(String stateName);
+    List<State> getStates();
+
+    Model getModel(String modelName);
+    List<Model> getModels();
 }
