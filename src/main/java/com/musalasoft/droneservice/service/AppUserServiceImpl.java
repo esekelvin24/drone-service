@@ -1,5 +1,6 @@
 package com.musalasoft.droneservice.service;
 
+import com.musalasoft.droneservice.exception.ApiRequestException;
 import com.musalasoft.droneservice.models.AppUser;
 import com.musalasoft.droneservice.models.Role;
 import com.musalasoft.droneservice.repo.AppUserRepo;
@@ -65,7 +66,7 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
        if(user == null)
        {
            log.error("User not found in the database");
-           throw new UsernameNotFoundException("User not found in the database");
+           throw new ApiRequestException("User not found in the database");
        }else
        {
            log.info("User found in the database {}", user.getUsername());
