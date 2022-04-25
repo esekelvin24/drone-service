@@ -3,6 +3,7 @@ package com.musalasoft.droneservice.api;
 import com.musalasoft.droneservice.models.*;
 import com.musalasoft.droneservice.requests.DroneRequest;
 import com.musalasoft.droneservice.requests.LoadedDroneMedication;
+import com.musalasoft.droneservice.requests.SaveLogRequest;
 import com.musalasoft.droneservice.service.DroneService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -50,6 +51,19 @@ public class DroneController {
     {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/drone/battery").toUriString());
         return ResponseEntity.created(uri).body(droneService.getDrone(drone.getDroneSn()));
+    }
+
+    @PostMapping("/drone/battery/auditlog")
+    public ResponseEntity<List<DroneBatteryAuditLog>> getDroneAuditLog(@RequestBody LoadedDroneMedication drone)
+    {
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/drone/battery/auditlog").toUriString());
+        return ResponseEntity.created(uri).body(droneService.getDroneAuditLog(drone.getDroneSn()));
+    }
+    @PostMapping("/drone/battery/auditlog/proccesstype")
+    public ResponseEntity<List<DroneBatteryAuditLog>> getDroneAuditLogProcessType(@RequestBody SaveLogRequest saveLogRequest )
+    {
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/drone/battery/auditlog/proccesstype").toUriString());
+        return ResponseEntity.created(uri).body(droneService.getLogByDroneSnProcessType(saveLogRequest));
     }
 
     @GetMapping("/drones/loading/available")

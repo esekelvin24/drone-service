@@ -2,12 +2,15 @@ package com.musalasoft.droneservice.service;
 
 import com.musalasoft.droneservice.exception.ApiRequestException;
 import com.musalasoft.droneservice.models.Drone;
+import com.musalasoft.droneservice.models.DroneBatteryAuditLog;
 import com.musalasoft.droneservice.models.Model;
 import com.musalasoft.droneservice.models.State;
+import com.musalasoft.droneservice.repo.DroneBatteryAuditRepo;
 import com.musalasoft.droneservice.repo.DroneRepo;
 import com.musalasoft.droneservice.repo.ModelRepo;
 import com.musalasoft.droneservice.repo.StateRepo;
 import com.musalasoft.droneservice.requests.DroneRequest;
+import com.musalasoft.droneservice.requests.SaveLogRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,7 @@ public class DroneServiceImpl implements DroneService {
     private final DroneRepo droneRepo;
     private final ModelRepo modelRepo;
     private final StateRepo stateRepo;
+    private final DroneBatteryAuditRepo droneBatteryAuditRepo;
 
     @Override
     public Drone saveDrone(DroneRequest droneRequest) {
@@ -115,5 +119,16 @@ public class DroneServiceImpl implements DroneService {
     @Override
     public List<Drone> getAvailableDrone() {
         return droneRepo.getAvailableDrone();
+    }
+
+    @Override
+    public List<DroneBatteryAuditLog> getDroneAuditLog(String droneSn) {
+        return droneBatteryAuditRepo.findByDroneSn(droneSn);
+    }
+
+    @Override
+    public List<DroneBatteryAuditLog> getLogByDroneSnProcessType(SaveLogRequest saveLogRequest) {
+        Drone drone = droneRepo.findBySn(saveLogRequest.getDroneSn());
+        return droneBatteryAuditRepo.findByDroneSnProcessType(drone.getId().toString(), saveLogRequest.getProccessType());
     }
 }

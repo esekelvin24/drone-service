@@ -34,13 +34,5 @@ public class DroneBatteryAuditServiceImpl implements DroneBatteryAuditService{
         return droneBatteryAuditRepo.save(new DroneBatteryAuditLog(null, drone , DroneBatterProcessType.DISCHARGE, drone.getState(), saveLogRequest.getPreviousBatteryPerc(), saveLogRequest.getCurrentBatteryPerc(), new Date()));
     }
 
-    @Override
-    public List<DroneBatteryAuditLog> getLogByDroneSn(SaveLogRequest saveLogRequest) {
-        return null;
-    }
 
-    @Override
-    public List<DroneBatteryAuditLog> getLogByDroneSnProcessType(SaveLogRequest saveLogRequest) {
-        return null;
-    }
 }

@@ -10,6 +10,5 @@ import java.util.List;
 public interface DroneBatteryAuditService {
     DroneBatteryAuditLog saveRechargeLog(SaveLogRequest saveLogRequest);
     DroneBatteryAuditLog saveDischargeLog(SaveLogRequest saveLogRequest);
-    List<DroneBatteryAuditLog> getLogByDroneSn(SaveLogRequest saveLogRequest);
-    List<DroneBatteryAuditLog> getLogByDroneSnProcessType(SaveLogRequest saveLogRequest);
+
 }
