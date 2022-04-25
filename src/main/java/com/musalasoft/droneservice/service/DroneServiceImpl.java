@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+import static com.musalasoft.droneservice.utilities.FieldValidator.validateDronSn;
+
 @Service
 @Transactional @AllArgsConstructor @Slf4j
 public class DroneServiceImpl implements DroneService {
@@ -31,6 +33,14 @@ public class DroneServiceImpl implements DroneService {
     public Drone saveDrone(DroneRequest droneRequest) {
 
         Drone droneExists = droneRepo.findBySn(droneRequest.getSn());
+
+        boolean validateSn = validateDronSn(droneRequest.getSn());
+
+        if(validateSn == false)
+        {
+            throw new ApiRequestException("Drone Serial Number Character Max is 100" );
+        }
+
         if (droneExists !=null)
         {
             log.error("Drone already exist with serial number {}",droneRequest.getSn() );

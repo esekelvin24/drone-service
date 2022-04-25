@@ -1,5 +1,6 @@
 package com.musalasoft.droneservice.service;
 
+import com.musalasoft.droneservice.exception.ApiRequestException;
 import com.musalasoft.droneservice.models.Medication;
 import com.musalasoft.droneservice.repo.MedicationRepo;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+
+import static com.musalasoft.droneservice.utilities.FieldValidator.validateMedicationCode;
+import static com.musalasoft.droneservice.utilities.FieldValidator.validateMedicationName;
 
 @Service
 @Transactional
@@ -19,6 +23,17 @@ public class MedicationServiceImpl implements MedicationService {
 
     @Override
     public Medication saveMedication(Medication medication) {
+
+        if (validateMedicationName(medication.getName()) == false)
+        {
+            throw new ApiRequestException("Medication name can only be letters, numbers, ‘-‘, ‘_’" );
+        }
+
+        if (validateMedicationCode(medication.getCode()) == false)
+        {
+            throw new ApiRequestException("Medication Code can only be UPPERCASE letters, numbers, ‘-‘, ‘_’" );
+        }
+
         return medicationRepo.save(medication);
     }
 
