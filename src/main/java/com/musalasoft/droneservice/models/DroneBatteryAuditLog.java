@@ -24,7 +24,7 @@ public class DroneBatteryAuditLog {
     private Drone drone;
 
     @Enumerated(EnumType.STRING)
-    private droneBatterProcessType processType;
+    private DroneBatterProcessType processType;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "drone_state_id", referencedColumnName = "id")

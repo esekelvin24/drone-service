@@ -11,6 +11,7 @@ public interface DroneService {
     Drone saveDrone(DroneRequest drone);
     Model saveModel(Model model);
     State saveState(State state);
+    int saveBatteryPercentage(String droneSn, int battery);
 
     void addDroneModel(String sn, String modelName);
     void addDroneState(String sn, String stateName);

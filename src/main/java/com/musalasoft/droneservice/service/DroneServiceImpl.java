@@ -58,6 +58,12 @@ public class DroneServiceImpl implements DroneService {
     }
 
     @Override
+    public int saveBatteryPercentage(String droneSn, int battery) {
+        Drone drone = droneRepo.findBySn(droneSn);
+        return droneRepo.saveDroneBatteryPerc(battery, drone.getId());
+    }
+
+    @Override
     public void addDroneModel(String sn, String modelName) {
          log.info("adding model {} to Drone Serial No {}", modelName, sn);
          Drone drone = droneRepo.findBySn(sn);

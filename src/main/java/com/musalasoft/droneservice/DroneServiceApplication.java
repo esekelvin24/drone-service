@@ -1,12 +1,11 @@
 package com.musalasoft.droneservice;
 
 import com.musalasoft.droneservice.models.*;
+import com.musalasoft.droneservice.repo.DroneRepo;
 import com.musalasoft.droneservice.requests.DroneRequest;
 import com.musalasoft.droneservice.requests.LoadDroneRequest;
-import com.musalasoft.droneservice.service.AppUserService;
-import com.musalasoft.droneservice.service.DroneService;
-import com.musalasoft.droneservice.service.MedicationService;
-import com.musalasoft.droneservice.service.TransactionService;
+import com.musalasoft.droneservice.requests.SaveLogRequest;
+import com.musalasoft.droneservice.service.*;
 import com.musalasoft.droneservice.utilities.DroneBatteryDrainer;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class DroneServiceApplication {
 
 
 	@Bean
-	CommandLineRunner run(AppUserService appUserService, DroneService droneService, MedicationService medicationService, TransactionService transactionService)
+	CommandLineRunner run(AppUserService appUserService, DroneService droneService, MedicationService medicationService, TransactionService transactionService,DroneBatteryAuditService droneBatteryAuditService)
 	{
 		return args -> {
 
@@ -104,9 +103,9 @@ public class DroneServiceApplication {
 
             //Run a battery drainer that will drain the drone battery
 			Timer timer = new Timer();
-			TimerTask task = new DroneBatteryDrainer(droneService);
+			TimerTask task = new DroneBatteryDrainer(droneService, droneBatteryAuditService);
 
-			timer.scheduleAtFixedRate(task , 0l, 2 * (60*1000)); // Runs every 2 mins
+			timer.scheduleAtFixedRate(task , 0l, 1 * (60*1000)); // Runs every 2 mins
 		};
 	}
 

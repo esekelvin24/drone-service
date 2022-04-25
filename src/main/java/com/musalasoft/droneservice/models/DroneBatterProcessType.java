@@ -1,6 +1,6 @@
 package com.musalasoft.droneservice.models;
 
-public enum droneBatterProcessType {
+public enum DroneBatterProcessType {
     DISCHARGE,
     CHARGE
 }
