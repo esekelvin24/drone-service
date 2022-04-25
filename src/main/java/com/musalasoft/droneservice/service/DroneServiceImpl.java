@@ -1,11 +1,13 @@
 package com.musalasoft.droneservice.service;
 
+import com.musalasoft.droneservice.exception.ApiRequestException;
 import com.musalasoft.droneservice.models.Drone;
 import com.musalasoft.droneservice.models.Model;
 import com.musalasoft.droneservice.models.State;
 import com.musalasoft.droneservice.repo.DroneRepo;
 import com.musalasoft.droneservice.repo.ModelRepo;
 import com.musalasoft.droneservice.repo.StateRepo;
+import com.musalasoft.droneservice.requests.DroneRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,9 +24,25 @@ public class DroneServiceImpl implements DroneService {
     private final StateRepo stateRepo;
 
     @Override
-    public Drone saveDrone(Drone drone) {
-        log.info("saving new drone with SN {} to the database", drone.getSn());
-        return droneRepo.save(drone);
+    public Drone saveDrone(DroneRequest droneRequest) {
+
+        Drone droneExists = droneRepo.findBySn(droneRequest.getSn());
+        if (droneExists !=null)
+        {
+            log.error("Drone already exist with serial number {}",droneRequest.getSn() );
+            throw new ApiRequestException("Drone already exist with serial number "+droneRequest.getSn()+"" );
+        }
+
+        Model model = modelRepo.findByName(droneRequest.getModel());
+        if(model == null)
+        {
+            throw new ApiRequestException("Model Not Found "+droneRequest.getSn()+"" );
+        }
+
+
+        log.info("saving new drone with SN {} to the database", droneRequest.getSn());
+
+        return droneRepo.save(new Drone(null, droneRequest.getSn(), droneRequest.getWeight(), droneRequest.getBattery(), this.getState("IDLE"), this.getModel(droneRequest.getModel()), null ));
     }
 
     @Override
@@ -86,5 +104,10 @@ public class DroneServiceImpl implements DroneService {
     public List<Drone> getDrones() {
         log.info("fetching all drone details");
         return droneRepo.findAll();
+    }
+
+    @Override
+    public List<Drone> getAvailableDrone() {
+        return droneRepo.getAvailableDrone();
     }
 }

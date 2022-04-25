@@ -1,6 +1,8 @@
 package com.musalasoft.droneservice.api;
 
 import com.musalasoft.droneservice.models.*;
+import com.musalasoft.droneservice.requests.DroneRequest;
+import com.musalasoft.droneservice.requests.LoadedDroneMedication;
 import com.musalasoft.droneservice.service.DroneService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -36,11 +38,27 @@ public class DroneController {
     }
 
     @PostMapping("/drone/save")
-    public ResponseEntity<Drone> saveDrone(@RequestBody Drone drone)
+    public ResponseEntity<Drone> saveDrone(@RequestBody DroneRequest drone)
     {
+
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/drone/save").toUriString());
         return ResponseEntity.created(uri).body(droneService.saveDrone(drone));
     }
+
+    @PostMapping("/drone/battery")
+    public ResponseEntity<Drone> checkBatteryLevel(@RequestBody LoadedDroneMedication drone)
+    {
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/drone/battery").toUriString());
+        return ResponseEntity.created(uri).body(droneService.getDrone(drone.getDroneSn()));
+    }
+
+    @GetMapping("/drones/loading/available")
+    public ResponseEntity<List<Drone>> getAvailableDrone()
+    {
+        return ResponseEntity.ok().body(droneService.getAvailableDrone());
+    }
+
+
 
     @PostMapping("/model/save")
     public ResponseEntity<Model> saveModel(@RequestBody Model model)

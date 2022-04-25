@@ -39,12 +39,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/api/v1/login","/api/v1/token/refresh/**").permitAll();
-        http.authorizeRequests().antMatchers(GET, "/api/v1/user/**" ).hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(GET, "/api/v1/role/**" ).hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(POST, "/api/v1/model/save/**" ).hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(POST, "/api/v1/state/save/**" ).hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(POST, "/api/v1/models" ).hasAnyAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers(POST, "/api/v1/states" ).hasAnyAuthority("ROLE_USER");
+
+        http.authorizeRequests().antMatchers(POST, "/api/v1/drone/battery","/api/v1/drone/loaded/medications","/api/v1/drone/save","/api/v1/drone/load","/api/v1/drones/loading/available" ).hasAnyAuthority("ROLE_USER");
+        http.authorizeRequests().antMatchers(POST, "/api/v1/models" ,"/api/v1/medications","/api/v1/medication/save" ).hasAnyAuthority("ROLE_USER");
+        http.authorizeRequests().antMatchers(POST, "/api/v1/medications/**","/api/v1/medication/**" ).hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(GET, "/api/v1/role/**","/api/v1/user/**"  ).hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(POST, "/api/v1/state/**","/api/v1/drone/**","/api/v1/drones/**","/api/v1/model/**" ).hasAnyAuthority("ROLE_ADMIN");
+
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -1,5 +1,6 @@
 package com.musalasoft.droneservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,9 +8,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.AUTO;
@@ -34,6 +33,10 @@ public class Drone {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "model_id", referencedColumnName = "id")
     Model model;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "drone")
+    private Set<Transaction> transactions = new HashSet<>();
 
 
 }
