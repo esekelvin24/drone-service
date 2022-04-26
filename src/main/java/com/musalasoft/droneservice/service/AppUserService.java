@@ -2,9 +2,10 @@ package com.musalasoft.droneservice.service;
 
 import com.musalasoft.droneservice.models.AppUser;
 import com.musalasoft.droneservice.models.Role;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public interface AppUserService {
 
     AppUser saveUser(AppUser appUser);
