@@ -1,5 +1,5 @@
 
-####### Implementation covered ####################
+**Implementation covered**
 
 - registering a drone (maximum serial number character is 100 );
 - creating a medication (Medication name allows only  letters, numbers, '-','_')/(Medication code allows only upper case letters, numbers, '-','_')
@@ -21,7 +21,7 @@
 6) TransactionServiceImplTest - Pending completion
 7) AppUserServiceImplTest - Pending completion
 
-################### Security ######################## JWT/ Auth0 for signing the token
+**Security -> JWT/ Auth0 for signing the token**
 1) Created Roles
 - ROLE_USER
 - ROLE_ADMIN
@@ -32,8 +32,10 @@
 - username = admin     password = 123456 (ROLE_ADMIN)
 - username = ese       password = 123456 (ROLE_SUPER_ADMIN
 
+**In Memory Database**
+- h2
 
-############HOW TO RUN APPLICATION ###########
+**HOW TO RUN APPLICATION**
 1) git clone https://github.com/esekelvin24/drone-service.git
 2) Make sure MAVEN has already been configured on your machine
 3) If MAVEN is not configured kindly follow this link to configure it https://phoenixnap.com/kb/install-maven-windows
@@ -43,9 +45,9 @@
 7) Type in "java -jar drone-service-0.0.1-SNAPSHOT.jar" to run application
 
 
-Download and Install Postman Client 
+__Download and Install Postman Client__ 
 
-######### GETTING AUTHORIZATION TOKEN #############
+**GETTING AUTHORIZATION TOKEN**
 
 1) Get an authorization and refresh Token using the steps below
 - Open Postman client
@@ -63,7 +65,7 @@ Download and Install Postman Client
 2) All on request to any API endpoints, kindly ensure your enter this authorization token on the header as shown below
 - KEY => Authorization VALUE => "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvdjEvbG9naW4iLCJleHAiOjE2NTA5MjA3MDF9.J5FcXWhAsGr1FwPk4ZVZxP0aZb1i2CIvlPX5WP_fQNM"
 
-############ GETTING LIST OF DRONE STATE ################
+**GETTING LIST OF DRONE STATE**
 1) By default, I created all the drone state  "in memory database" and the following endpoints will fetch the list of the created drones
 - Open Postman client
 - request URL: http://localhost:8080/api/v1/states
@@ -100,7 +102,7 @@ Download and Install Postman Client
 ]
 
 
-############ GETTING LIST OF MODELS #####################
+**GETTING LIST OF MODELS**
 1) By default, I created all the drone models  "in memory database" and the following endpoints will fetch the list of the created drones
 - Open Postman client
 - request URL: http://localhost:8080/api/v1/models
@@ -129,7 +131,7 @@ Download and Install Postman Client
 ]
 
 
-######### GETTING LIST OF DRONES #############
+**GETTING LIST OF DRONES**
 1) By default, I created 4 Drones in the "in memory database" and the following endpoints will fetch the list of the created drones
 - Open Postman client
 - request URL: http://localhost:8080/api/v1/drones
@@ -197,7 +199,7 @@ Download and Install Postman Client
 }
 ]
 
-######### GETTING LIST OF CREATED MEDICATION #############
+**GETTING LIST OF CREATED MEDICATION**
 1) By default, I created 5 Medications with different weights in the "in memory database" and the following endpoints will fetch the list of the created medications
 - Open Postman client
 - request URL: http://localhost:8080/api/v1/medications
@@ -244,7 +246,7 @@ Download and Install Postman Client
 }
 ]
 
-############ GETTING AVAILABLE DRONES FOR LOADING #####################
+**GETTING AVAILABLE DRONES FOR LOADING**
 1) Only drone is IDLE STATE and LOADING state will be displayed
 - Open Postman client
 - request URL: http://localhost:8080/api/v1/drones/loading/available
@@ -326,7 +328,7 @@ Download and Install Postman Client
 }
 ]
 
-######### LOADING MEDICATIONS ON A DRONE #############
+**LOADING MEDICATIONS ON A DRONE**
 1) You can be able to load created medications on a drone by sending the medication code and drone serial number as a JSON string. this will change its state from IDLE to loading
 -Open Postman client
 - request URL: http://localhost:8080/api/v1/drone/load
@@ -373,7 +375,7 @@ Download and Install Postman Client
 "transactionStatus": "OPEN"
 }
 
-########## CREATE A NEW DRONE  ######################## 
+**CREATE A NEW DRONE**   
 1) You can be able to create  a drone using the JSON string as shown below
 -Open Postman client
 - request URL: http://localhost:8080/api/v1/drone/save
@@ -408,7 +410,7 @@ Download and Install Postman Client
 }
 }
 
-################ CREATE NEW MEDICATION ################
+**CREATE NEW MEDICATION**
 1) You can be able to create  a medication using the JSON string as shown below
 -Open Postman client
 - request URL: http://localhost:8080/api/v1/medication/save
@@ -438,7 +440,7 @@ Download and Install Postman Client
 }
 
 
-################## GET LOADED MEDICATION ON A DRONE #######################
+**GET LOADED MEDICATION ON A DRONE**
 
 1) You can be able to get loaded medication on a drone by sending the drone serial number and transactionStatus as a JSON string
 - Open Postman client
@@ -487,7 +489,7 @@ Download and Install Postman Client
 ]
 
 
-################## GET DRONE BATTERY PERCENTAGE #######################
+**GET DRONE BATTERY PERCENTAGE**
 
 1) You can be able to get battery percentage of a drone by sending the drone serial number as a JSON string
 - Open Postman client
@@ -520,7 +522,7 @@ Download and Install Postman Client
 }
 }
 
-###################### GET HISTORY/AUDIT EVENT LOG FOR DRONE BATTERY  #############
+**GET HISTORY/AUDIT EVENT LOG FOR DRONE BATTERY**
 
 1) You can be able to get battery history/audit event log of a drone by sending the drone serial number as a JSON string
 - Open Postman client
@@ -611,7 +613,7 @@ Download and Install Postman Client
 }
 ]
 
-################## OTHER REQUEST ENDPOINTS  ###########################
+**OTHER REQUEST ENDPOINTS**
 
 1) To get list of loaded medication transactions of all drones
 - request URL: http://localhost:8080/api/v1/transactions
