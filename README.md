@@ -11,6 +11,15 @@
 - Introduce a periodic task to check drones battery levels and create history/audit event log for this.
 - The periodic task is a timer class that discharges IDLE drones by 5% and when the drone is one Delivering state it discharges by 20% and logs it
 
+- UNIT TESTING (CLASSES) ONGOING
+1) DroneRepoTest  - Completed
+2) MedicationRepoTest - Completed
+3) TransactionRepoTest - Pending completion
+4) DroneServiceImplTest - Pending completion
+5) MedicationServiceImplTest - Pending completion
+6) TransactionServiceImplTest - Pending completion
+7) AppUserServiceImplTest - Pending completion
+
 ################### Security ######################## JWT/ Auth0 for signing the token
 1) Created Roles
 - ROLE_USER
