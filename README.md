@@ -1,3 +1,9 @@
+############HOW TO RUN APPLICATION ###########
+1) git clone https://github.com/esekelvin24/drone-service.git
+2) Download and Install intelij IDE
+3) 
+
+
 ####### Implementation covered ####################
 
 - registering a drone (maximum serial number character is 100 );
@@ -11,7 +17,7 @@
 - Introduce a periodic task to check drones battery levels and create history/audit event log for this.
 - The periodic task is a timer class that discharges IDLE drones by 5% and when the drone is one Delivering state it discharges by 20% and logs it
 
-- UNIT TESTING (CLASSES) ONGOING
+- SYSTEM UNDER TEST (SUT) - ONGOING
 1) DroneRepoTest  - Completed
 2) MedicationRepoTest - Completed
 3) TransactionRepoTest - Pending completion
