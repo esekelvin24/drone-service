@@ -2,6 +2,7 @@ package com.musalasoft.droneservice;
 
 import com.musalasoft.droneservice.models.*;
 import com.musalasoft.droneservice.repo.DroneRepo;
+import com.musalasoft.droneservice.requests.CreateMedication;
 import com.musalasoft.droneservice.requests.DroneRequest;
 import com.musalasoft.droneservice.requests.LoadDroneRequest;
 import com.musalasoft.droneservice.requests.SaveLogRequest;
@@ -69,11 +70,11 @@ public class DroneServiceApplication {
 
 
 			//Adding Medication
-			medicationService.saveMedication(new Medication(null, "Medication For_Cough", 130, "A4829113","https://www.assetpharmacy.com/wp-content/uploads/2019/08/D-KOFF-Cough-Expectorant-Syrup-100ml-1.jpg", null));
-			medicationService.saveMedication(new Medication(null, "Medication for Blood Pressure", 500, "5299113","https://www.sciencenews.org/wp-content/uploads/2020/04/042320_ac_covid-ace_feat.jpg", null));
-			medicationService.saveMedication(new Medication(null, "Medication for Cancer", 350, "5399115","https://pharmaceutical-journal.com/wp-content/uploads/2021/03/How-to-counsel-cancer-patients-about-their-oral-chemotherapy.jpg", null));
-			medicationService.saveMedication(new Medication(null, "Medication for Body Pains", 50, "4899115","https://pharmaceutical-journal.com/wp-content/uploads/2021/03/How-to-counsel-cancer-patients-about-their-oral-chemotherapy.jpg", null));
-			medicationService.saveMedication(new Medication(null, "Medication for Ulcer", 120, "9899115","https://pharmaceutical-journal.com/wp-content/uploads/2021/03/How-to-counsel-cancer-patients-about-their-oral-chemotherapy.jpg", null));
+			medicationService.saveMedication(new CreateMedication( "Medication For_Cough", "A4829113","https://www.assetpharmacy.com/wp-content/uploads/2019/08/D-KOFF-Cough-Expectorant-Syrup-100ml-1.jpg", 130));
+			medicationService.saveMedication(new CreateMedication( "Medication for Blood Pressure", "5299113","https://www.sciencenews.org/wp-content/uploads/2020/04/042320_ac_covid-ace_feat.jpg", 500));
+			medicationService.saveMedication(new CreateMedication( "Medication for Cancer", "5399115","https://pharmaceutical-journal.com/wp-content/uploads/2021/03/How-to-counsel-cancer-patients-about-their-oral-chemotherapy.jpg", 350));
+			medicationService.saveMedication(new CreateMedication( "Medication for Body Pains", "4899115","https://pharmaceutical-journal.com/wp-content/uploads/2021/03/How-to-counsel-cancer-patients-about-their-oral-chemotherapy.jpg", 50));
+			medicationService.saveMedication(new CreateMedication( "Medication for Ulcer", "9899115","https://pharmaceutical-journal.com/wp-content/uploads/2021/03/How-to-counsel-cancer-patients-about-their-oral-chemotherapy.jpg", 120 ));
 
             //Add Medication to drone
 

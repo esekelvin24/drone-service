@@ -2,6 +2,7 @@ package com.musalasoft.droneservice.api;
 
 import com.musalasoft.droneservice.models.Drone;
 import com.musalasoft.droneservice.models.Medication;
+import com.musalasoft.droneservice.requests.CreateMedication;
 import com.musalasoft.droneservice.service.MedicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,10 +26,10 @@ public class MedicationController {
     }
 
     @PostMapping("/medication/save")
-    public ResponseEntity<Medication> saveMedication(@RequestBody Medication medication)
+    public ResponseEntity<Medication> saveMedication(@RequestBody CreateMedication createMedication)
     {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/medication/save").toUriString());
-        return ResponseEntity.created(uri).body(medicationService.saveMedication(medication));
+        return ResponseEntity.created(uri).body(medicationService.saveMedication(createMedication));
     }
 
 
