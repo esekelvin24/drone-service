@@ -1,8 +1,3 @@
-############HOW TO RUN APPLICATION ###########
-1) git clone https://github.com/esekelvin24/drone-service.git
-2) Download and Install intelij IDE
-3) 
-
 
 ####### Implementation covered ####################
 
@@ -35,10 +30,20 @@
 2) List of users Created
 - username = user      password = 123456 (ROLE_USER)
 - username = admin     password = 123456 (ROLE_ADMIN)
-- username = ese       password = 12345  (ROLE_SUPER_ADMIN
+- username = ese       password = 123456 (ROLE_SUPER_ADMIN
 
 
-Download and Install Postman API Client 
+############HOW TO RUN APPLICATION ###########
+1) git clone https://github.com/esekelvin24/drone-service.git
+2) Make sure MAVEN has already been configured on your machine
+3) If MAVEN is not configured kindly follow this link to configure it https://phoenixnap.com/kb/install-maven-windows
+4) Navigate to the project root directory "drone-service" with your command interface
+5) Type in "mvn install" to build, test and generate the drone-service-0.0.1-SNAPSHOT.jar
+6) Navigate to the "drone-service/target" folder on your command interface
+7) Type in "java -jar drone-service-0.0.1-SNAPSHOT.jar" to run application
+
+
+Download and Install Postman Client 
 
 ######### GETTING AUTHORIZATION TOKEN #############
 
